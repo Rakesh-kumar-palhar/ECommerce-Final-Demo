@@ -1,0 +1,76 @@
+[
+  {
+    "ContainingType": "ECommerce_Final_Demo.Controllers.AuthContrller",
+    "Method": "Login",
+    "RelativePath": "api/Auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "ECommerce_Final_Demo.Model.LoginModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ECommerce_Final_Demo.Controllers.AuthContrller",
+    "Method": "Register",
+    "RelativePath": "api/Auth/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "ECommerce_Final_Demo.Model.RegisterModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ECommerce_Final_Demo.Controllers.StoreController",
+    "Method": "GetStoreById",
+    "RelativePath": "api/stores/{storeId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ECommerce_Final_Demo.Controllers.StoreController",
+    "Method": "AddStore",
+    "RelativePath": "api/stores/addstore",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storeDto",
+        "Type": "ECommerce_Final_Demo.Model.DTO.StoreDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ECommerce_Final_Demo.Controllers.StoreController",
+    "Method": "GetStores",
+    "RelativePath": "api/stores/allstores",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]
