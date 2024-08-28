@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerce_Final_Demo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240822133851_initial")]
+    [Migration("20240828090350_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -25,23 +25,26 @@ namespace ECommerce_Final_Demo.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("CartItem", b =>
+                {
+                    b.Property<Guid>("CartsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ItemsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("CartsId", "ItemsId");
+
+                    b.HasIndex("ItemsId");
+
+                    b.ToTable("CartItem");
+                });
+
             modelBuilder.Entity("ECommerce_Final_Demo.Model.Cart", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("AddedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("ItemId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -62,11 +65,17 @@ namespace ECommerce_Final_Demo.Migrations
                     b.Property<Guid>("ItemId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("price")
+                        .HasColumnType("decimal(18,2)");
+
                     b.HasKey("CartId", "ItemId");
 
                     b.HasIndex("ItemId");
 
-                    b.ToTable("CartItem");
+                    b.ToTable("CartItems");
                 });
 
             modelBuilder.Entity("ECommerce_Final_Demo.Model.Item", b =>
@@ -278,6 +287,21 @@ namespace ECommerce_Final_Demo.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("CartItem", b =>
+                {
+                    b.HasOne("ECommerce_Final_Demo.Model.Cart", null)
+                        .WithMany()
+                        .HasForeignKey("CartsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ECommerce_Final_Demo.Model.Item", null)
+                        .WithMany()
+                        .HasForeignKey("ItemsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("ECommerce_Final_Demo.Model.Cart", b =>
                 {
                     b.HasOne("ECommerce_Final_Demo.Model.User", "User")
@@ -292,13 +316,13 @@ namespace ECommerce_Final_Demo.Migrations
             modelBuilder.Entity("ECommerce_Final_Demo.Model.CartItem", b =>
                 {
                     b.HasOne("ECommerce_Final_Demo.Model.Cart", "Cart")
-                        .WithMany("CartItems")
+                        .WithMany()
                         .HasForeignKey("CartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ECommerce_Final_Demo.Model.Item", "Item")
-                        .WithMany("CartItems")
+                        .WithMany()
                         .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -366,15 +390,8 @@ namespace ECommerce_Final_Demo.Migrations
                     b.Navigation("Store");
                 });
 
-            modelBuilder.Entity("ECommerce_Final_Demo.Model.Cart", b =>
-                {
-                    b.Navigation("CartItems");
-                });
-
             modelBuilder.Entity("ECommerce_Final_Demo.Model.Item", b =>
                 {
-                    b.Navigation("CartItems");
-
                     b.Navigation("OrderItems");
                 });
 

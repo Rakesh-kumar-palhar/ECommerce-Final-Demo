@@ -10,11 +10,11 @@ namespace ECommerce_Final_Demo.Model
 
         [Required]
         [StringLength(100)]
-        public string? FName { get; set; }
+        public string FName { get; set; } = null!;
 
         [Required]
         [StringLength(100)]
-        public string? LName { get; set; }
+        public string LName { get; set; }= null!;
 
         [Required]
         [EmailAddress]

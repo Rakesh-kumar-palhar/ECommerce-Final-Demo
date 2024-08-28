@@ -6,7 +6,7 @@ namespace ECommerce_Final_Demo.Model
     public class OrderItem
     {
         [Key]
-        public int Id { get; set; } 
+        public Guid Id { get; set; } 
 
         [Required]
         public Guid OrderId { get; set; } 
@@ -28,5 +28,7 @@ namespace ECommerce_Final_Demo.Model
 
         [ForeignKey("ItemId")]
         public Item? Item { get; set; }
+
+       
     }
 }

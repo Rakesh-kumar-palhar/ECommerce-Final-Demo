@@ -2,20 +2,20 @@
 
 namespace ECommerce_Final_Demo.Model
 {
-    public class ApplicationDbContext:DbContext
+    public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext>options):base(options) 
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Cart>()
-       .Property(c => c.Price)
-       .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<CartItem>()
+                .Property(ci => ci.price)
+               .HasColumnType("decimal(18,2)");
 
             modelBuilder.Entity<Item>()
                 .Property(i => i.Price)
@@ -29,11 +29,12 @@ namespace ECommerce_Final_Demo.Model
                 .Property(oi => oi.Price)
                 .HasColumnType("decimal(18,2)");
 
+            // Define relationships
             modelBuilder.Entity<OrderItem>()
-               .HasOne(oi => oi.Order)
-               .WithMany(o => o.OrderItems)
-               .HasForeignKey(oi => oi.OrderId)
-               .OnDelete(DeleteBehavior.Restrict); // or DeleteBehavior.SetNull
+                .HasOne(oi => oi.Order)
+                .WithMany(o => o.OrderItems)
+                .HasForeignKey(oi => oi.OrderId)
+                .OnDelete(DeleteBehavior.Restrict); // or DeleteBehavior.SetNull
 
             modelBuilder.Entity<OrderItem>()
                 .HasOne(oi => oi.Item)
@@ -41,11 +42,14 @@ namespace ECommerce_Final_Demo.Model
                 .HasForeignKey(oi => oi.ItemId)
                 .OnDelete(DeleteBehavior.Restrict); // or DeleteBehavior.SetNull
 
-
+             
             modelBuilder.Entity<CartItem>()
-                .HasKey(er => new { er.CartId, er.ItemId });
+            .HasKey(ci => new { ci.CartId, ci.ItemId });
 
-
+            //modelBuilder.Entity<OrderItem>()
+            //.HasOne(oi => oi.Cart)
+            //.WithMany(c => c.Items)
+            //.HasForeignKey(oi => oi.CartId);
         }
 
         public DbSet<User> Users { get; set; }
@@ -53,6 +57,7 @@ namespace ECommerce_Final_Demo.Model
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Logger> Loggers { get; set; }
 

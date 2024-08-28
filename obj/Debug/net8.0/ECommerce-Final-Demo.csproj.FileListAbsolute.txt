@@ -136,3 +136,4 @@ E:\Rakesh\FinalDemoVerve\ECommerce-Final-Demo\bin\Debug\net8.0\runtimes\win\lib\
 E:\Rakesh\FinalDemoVerve\ECommerce-Final-Demo\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 E:\Rakesh\FinalDemoVerve\ECommerce-Final-Demo\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 E:\Rakesh\FinalDemoVerve\ECommerce-Final-Demo\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\Rakesh\FinalDemoVerve\ECommerce-Final-Demo\obj\Debug\net8.0\ECommerce-Final-Demo.sourcelink.json

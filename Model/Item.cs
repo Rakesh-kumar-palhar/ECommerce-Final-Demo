@@ -13,7 +13,7 @@ namespace ECommerce_Final_Demo.Model
         }
 
             [Key]
-            public Guid Id { get; set; } 
+            public Guid Id { get; set; } = Guid.NewGuid();
 
             [Required]
             [StringLength(200)]
@@ -35,7 +35,7 @@ namespace ECommerce_Final_Demo.Model
             [ForeignKey("StoreId")]
             public Store? Store { get; set; }
 
-            public ICollection<CartItem>? CartItems { get; set; }
+            public ICollection<Cart>? Carts { get; set; }
             public ICollection<OrderItem>? OrderItems { get; set; }
     }
 }
