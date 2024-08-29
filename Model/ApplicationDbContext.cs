@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce_Final_Demo.Model
 {
@@ -46,6 +47,9 @@ namespace ECommerce_Final_Demo.Model
             modelBuilder.Entity<CartItem>()
             .HasKey(ci => new { ci.CartId, ci.ItemId });
 
+            modelBuilder.Entity<OrderItem>()
+            .HasKey(oi => new { oi.OrderId, oi.ItemId });
+
             //modelBuilder.Entity<OrderItem>()
             //.HasOne(oi => oi.Cart)
             //.WithMany(c => c.Items)
@@ -58,8 +62,9 @@ namespace ECommerce_Final_Demo.Model
         public DbSet<Item> Items { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
-        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }       
         public DbSet<Logger> Loggers { get; set; }
+        
 
     }
 }

@@ -5,8 +5,7 @@ namespace ECommerce_Final_Demo.Model
 {
     public class OrderItem
     {
-        [Key]
-        public Guid Id { get; set; } 
+       
 
         [Required]
         public Guid OrderId { get; set; } 

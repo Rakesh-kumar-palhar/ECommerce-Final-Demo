@@ -127,5 +127,20 @@ namespace ECommerce_Final_Demo.Controllers
             var itemDto = ItemDto.Mapping(item); 
             return Ok(itemDto); 
         }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> SearchItems([FromQuery] ItemFilterDto filterDto)
+        {
+            var query = _context.Items.AsQueryable();
+
+            if (filterDto.Category.HasValue)
+            {
+                query = query.Where(i => i.Type == filterDto.Category.Value);
+            }
+
+            var items = await query.ToListAsync();
+
+            return Ok(items);
+        }
     }
 }

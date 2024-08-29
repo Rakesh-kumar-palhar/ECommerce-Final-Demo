@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerce_Final_Demo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240828090350_initial")]
+    [Migration("20240829132201_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -59,7 +59,7 @@ namespace ECommerce_Final_Demo.Migrations
 
             modelBuilder.Entity("ECommerce_Final_Demo.Model.CartItem", b =>
                 {
-                    b.Property<Guid>("CartId")
+                    b.Property<Guid?>("CartId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ItemId")
@@ -164,16 +164,10 @@ namespace ECommerce_Final_Demo.Migrations
 
             modelBuilder.Entity("ECommerce_Final_Demo.Model.OrderItem", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<Guid>("ItemId")
+                    b.Property<Guid>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("OrderId")
+                    b.Property<Guid>("ItemId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Price")
@@ -182,11 +176,9 @@ namespace ECommerce_Final_Demo.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("OrderId", "ItemId");
 
                     b.HasIndex("ItemId");
-
-                    b.HasIndex("OrderId");
 
                     b.ToTable("OrderItems");
                 });

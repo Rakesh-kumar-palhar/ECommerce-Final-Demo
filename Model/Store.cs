@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.Metrics;
 
 namespace ECommerce_Final_Demo.Model
@@ -31,7 +32,7 @@ namespace ECommerce_Final_Demo.Model
     }
 
     public enum State
-    {
+   {
     
         California,
 
@@ -45,9 +46,9 @@ namespace ECommerce_Final_Demo.Model
     public enum City
     {
         
-        LosAngeles,
+       LosAngeles,
 
-        Toronto,
+       Toronto,
 
         Mumbai,
 

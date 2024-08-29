@@ -193,8 +193,6 @@ namespace ECommerce_Final_Demo.Migrations
                 name: "OrderItems",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ItemId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
@@ -202,7 +200,7 @@ namespace ECommerce_Final_Demo.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderItems", x => x.Id);
+                    table.PrimaryKey("PK_OrderItems", x => new { x.OrderId, x.ItemId });
                     table.ForeignKey(
                         name: "FK_OrderItems_Items_ItemId",
                         column: x => x.ItemId,
@@ -242,11 +240,6 @@ namespace ECommerce_Final_Demo.Migrations
                 name: "IX_OrderItems_ItemId",
                 table: "OrderItems",
                 column: "ItemId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OrderItems_OrderId",
-                table: "OrderItems",
-                column: "OrderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_StoreId",

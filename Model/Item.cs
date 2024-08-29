@@ -28,6 +28,7 @@ namespace ECommerce_Final_Demo.Model
 
             [Required]
             public string? Image { get; set; }
+            
 
             //Relationship
             [Required]
