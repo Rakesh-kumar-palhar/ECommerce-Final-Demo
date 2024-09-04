@@ -43,7 +43,8 @@ namespace ECommerce_Final_Demo.Controllers
                 MobileNumber = model.MobileNumber,
                 Role = "User",  // Default role
                 CreateDate = DateTime.UtcNow,
-                IsActive = true
+                IsActive = true,
+                Profile = model.Profile
             };
 
             user.Password = _passwordHasher.HashPassword(user, model.Password);

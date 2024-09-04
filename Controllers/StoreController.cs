@@ -18,35 +18,7 @@ namespace ECommerce_Final_Demo.Controllers
             _context = context;
         }
 
-        //private StoreDto MapToDto(Store store)
-        //{
-        //    return new StoreDto
-        //    {
-        //        Id = store.Id,
-        //        Name = store.Name,
-        //        Country = (CountryDto)store.Country,
-        //        State = (StateDto)store.State,
-        //        City = (CityDto)store.City,
-        //        Image = store.Image
-
-        //    };
-        //}
-
-        /* private Store MapToModel(StoreDto storeDto)
-         {
-             return new Store
-             {
-                 Id = storeDto.Id,
-                 Name = storeDto.Name,
-                 Country = (Country)storeDto.Country,
-                 State = (State)storeDto.State,
-                 City = (City)storeDto.City,
-                 Image = storeDto.Image
-
-             };
-         }*/
-
-
+        
         //if you wants to see the list of the store
         [HttpGet("allstores")]
         //[Authorize(Roles = "SuperAdmin")]
@@ -101,9 +73,9 @@ namespace ECommerce_Final_Demo.Controllers
                 return NotFound(new { Message = "Store not found." });
             }
             existingStore.Name = storeDto.Name;
-            existingStore.Country = (Country)storeDto.Country;
-            existingStore.State = (State)storeDto.State;
-            existingStore.City = (City)storeDto.City;
+            existingStore.CountryId = storeDto.CountryId;
+            existingStore.StateId = storeDto.StateId;
+            existingStore.CityId = storeDto.CityId;
             existingStore.Image = storeDto.Image;
 
             _context.Stores.Update(existingStore);

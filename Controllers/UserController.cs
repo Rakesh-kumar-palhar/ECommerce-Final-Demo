@@ -10,7 +10,7 @@ namespace ECommerce_Final_Demo.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "SuperAdmin,StoreAdmin")]
+   // [Authorize(Roles = "SuperAdmin,StoreAdmin")]
     public class UserController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -23,20 +23,28 @@ namespace ECommerce_Final_Demo.Controllers
         }
 
         [HttpGet("alluser")]
-        [Authorize(Roles = "SuperAdmin ")]
+       // [Authorize(Roles = "SuperAdmin ")]
         public async Task<IActionResult> GetUsers([FromQuery] Guid? storeId)
         {
-            ////var users = storeId.HasValue
-            ////    ? await _context.Users.Where(u => u.StoreId == storeId.Value).ToListAsync()
-            ////    : await _context.Users.ToListAsync();
-            //var users = await _context.Users.ToListAsync();
-            //var userDtos = UserDto.Mapping(users);
-            //return Ok(userDtos);
+            
             var users = storeId.HasValue
                 ? await _context.Users.Where(u => u.StoreId == storeId.Value).ToListAsync()
                 : await _context.Users.ToListAsync();
 
             var userDtos = UserDto.Mapping(users);
+            return Ok(userDtos);
+        }
+
+        [HttpGet("allusers")]
+        // [Authorize(Roles = "SuperAdmin")]
+        public async Task<IActionResult> GetUserss()
+        {
+            var users = await _context.Users
+            .Where(u => u.Role == "User") // Filter users by role
+            .ToListAsync();           
+            var userDtos = UserDto.Mapping(users);
+
+            // Return the list of users
             return Ok(userDtos);
         }
 
@@ -54,7 +62,7 @@ namespace ECommerce_Final_Demo.Controllers
         }
 
         [HttpPost("createuser")]
-        [Authorize(Roles = "StoreAdmin ")]
+        //[Authorize(Roles = "StoreAdmin ")]
         public async Task<IActionResult> CreateUser([FromBody] UserDto userDto)
         {
             if (!ModelState.IsValid)
@@ -83,8 +91,8 @@ namespace ECommerce_Final_Demo.Controllers
             return CreatedAtAction(nameof(GetUser), new { userId = user.Id }, UserDto.Mapping(user));
         }
 
-        [HttpPut("updateuser{userId:guid}")]
-        [Authorize(Roles = "SuperAdmin,StoreAdmin")]
+        [HttpPut("UpdateUser/{userId:guid}")]
+        //[Authorize(Roles = "SuperAdmin,StoreAdmin")]
         public async Task<IActionResult> UpdateUser(Guid userId, [FromBody] UserDto userDto)
         {
             if (userId != userDto.Id)
@@ -120,7 +128,7 @@ namespace ECommerce_Final_Demo.Controllers
         }
 
         [HttpDelete("deleteuser{userId:guid}")]
-        [Authorize(Roles = "SuperAdmin,StoreAdmin")]
+        //[Authorize(Roles = "SuperAdmin,StoreAdmin")]
         public async Task<IActionResult> DeleteUser(Guid userId)
         {
             var user = await _context.Users.FindAsync(userId);

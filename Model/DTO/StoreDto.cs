@@ -4,9 +4,9 @@
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public CountryDto Country { get; set; }
-        public StateDto State { get; set; }
-        public CityDto City { get; set; }
+        public int CountryId { get; set; }
+        public  int StateId { get; set; }
+        public  int CityId { get; set; }
         public string? Image { get; set; }
 
         public static StoreDto Mapping(Store store)
@@ -15,9 +15,9 @@
             {
                 Id = store.Id,
                 Name = store.Name,
-                Country = (CountryDto)store.Country,
-                State = (StateDto)store.State,
-                City = (CityDto)store.City,
+                CountryId = store.CountryId,
+                StateId = store.StateId,
+                CityId = store.CityId,
                 Image = store.Image
             };
         }
@@ -38,9 +38,9 @@
             {
                 Id = storeDto.Id,
                 Name = storeDto.Name,
-                Country = (Country)storeDto.Country,
-                State = (State)storeDto.State,
-                City = (City)storeDto.City,
+                CountryId = storeDto.CountryId,
+                StateId = storeDto.StateId,
+                CityId = storeDto.CityId,
                 Image = storeDto.Image
 
             };
@@ -57,25 +57,5 @@
 
 
     }
-    public enum CountryDto
-    {
-       USA,
-        India
-    }
-
-    public enum StateDto
-    {
-        California,
-        Chicago,
-        Maharashtra,
-        Ahmedabad
-    }
-
-    public enum CityDto
-    {
-        LosAngeles,
-        Toronto,
-        Mumbai,
-        AnandNagar
-    }
+    
 }

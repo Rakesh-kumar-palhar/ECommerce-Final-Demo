@@ -323,6 +323,16 @@
   },
   {
     "ContainingType": "ECommerce_Final_Demo.Controllers.UserController",
+    "Method": "GetUserss",
+    "RelativePath": "api/User/allusers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ECommerce_Final_Demo.Controllers.UserController",
     "Method": "CreateUser",
     "RelativePath": "api/User/createuser",
     "HttpMethod": "POST",
@@ -372,7 +382,7 @@
   {
     "ContainingType": "ECommerce_Final_Demo.Controllers.UserController",
     "Method": "UpdateUser",
-    "RelativePath": "api/User/updateuser{userId}",
+    "RelativePath": "api/User/UpdateUser/{userId}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,

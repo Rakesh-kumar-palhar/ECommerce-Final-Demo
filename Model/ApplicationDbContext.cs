@@ -54,6 +54,26 @@ namespace ECommerce_Final_Demo.Model
             //.HasOne(oi => oi.Cart)
             //.WithMany(c => c.Items)
             //.HasForeignKey(oi => oi.CartId);
+            //Hotel Relationship
+            
+
+            modelBuilder.Entity<Store>()
+             .HasOne(h => h.Country)
+            .WithMany()
+            .HasForeignKey(h => h.CountryId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Store>()
+            .HasOne(h => h.State)
+            .WithMany()
+             .HasForeignKey(h => h.StateId)
+             .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Store>()
+            .HasOne(h => h.City)
+            .WithMany()
+            .HasForeignKey(h => h.CityId)
+            .OnDelete(DeleteBehavior.Restrict);
         }
 
         public DbSet<User> Users { get; set; }
@@ -64,7 +84,8 @@ namespace ECommerce_Final_Demo.Model
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }       
         public DbSet<Logger> Loggers { get; set; }
-        
-
+        public DbSet<Country> Countrys {  get; set; }
+        public DbSet<State>States { get; set; }
+        public DbSet <City>Citys { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.Metrics;
 
 namespace ECommerce_Final_Demo.Model
@@ -12,49 +13,25 @@ namespace ECommerce_Final_Demo.Model
         [StringLength(200)]
         public string Name { get; set; } = null!;
         [Required]
-        public Country Country { get; set; } // Enum for Country
+        [ForeignKey("country")]
+        public int CountryId { get; set; } // Enum for Country
         [Required]
-        public State State { get; set; } // Enum for State
+        [ForeignKey("State")]
+        public int StateId { get; set; } // Enum for State
         [Required]
-        public City City { get; set; } //Enum for city
+        [ForeignKey("City")]
+        public int CityId { get; set; } //Enum for city
         public string? Image { get; set; } 
         //relationship
         public virtual ICollection<User>? Users { get; set; }
         public virtual ICollection<Item>? Items { get; set; }
         public virtual ICollection<Order>? Orders { get; set; }
+        public virtual Country Country { get; set; }
+        public virtual City City { get; set; }
+        public virtual State State { get; set; }
 
     }
-    public enum Country
-    {
-        USA,
-        
-        India
-    }
-
-    public enum State
-   {
     
-        California,
-
-        Chikago,
-
-        Maharashtra,
-
-        Ahmadabad
-    }
-
-    public enum City
-    {
-        
-       LosAngeles,
-
-       Toronto,
-
-        Mumbai,
-
-        AnandNagar
-    }
-
 
 
 }

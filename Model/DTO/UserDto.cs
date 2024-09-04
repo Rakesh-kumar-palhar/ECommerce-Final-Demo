@@ -14,9 +14,9 @@
         public bool IsActive { get; set; }
         public string? Profile { get; set; }
         public Guid? StoreId { get; set; }
-       // public string? CreatedBy { get; set; }
-       // public string? UpdatedBy { get; set; }
-       //public string? Token { get; set; }
+        // public string? CreatedBy { get; set; }
+        // public string? UpdatedBy { get; set; }
+        //public string? Token { get; set; }
 
         public static UserDto Mapping(User user)
         {
@@ -68,7 +68,7 @@
                 StoreId = userDto.StoreId,
                 // CreatedBy = userDto.CreatedBy,
                 //UpdatedBy = userDto.UpdatedBy,
-               // Token = userDto.Token
+                // Token = userDto.Token
             };
         }
 

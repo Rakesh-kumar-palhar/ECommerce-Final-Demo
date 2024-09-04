@@ -78,9 +78,6 @@ namespace ECommerce_Final_Demo.Controllers
             _context.Orders.Add(order);
             _context.OrderItems.AddRange(orderItems);
 
-            await _context.SaveChangesAsync();
-            
-
             // Remove items from the cart after placing the order
             _context.Carts.Remove(cart);
             await _context.SaveChangesAsync();
@@ -114,7 +111,7 @@ namespace ECommerce_Final_Demo.Controllers
                           $"Store ID: {order.StoreId}\n" +
                           $"Order Date: {order.OrderDate}\n" +
                           $"Total Amount:{order.TotalAmount}\n";       
-
+           
           billDetails += $"Total Amount: {order.TotalAmount}\n";
           return billDetails;
         }
