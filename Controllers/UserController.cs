@@ -119,7 +119,7 @@ namespace ECommerce_Final_Demo.Controllers
             existingUser.StoreId = userDto.StoreId;
             //existingUser.CreatedBy = userDto.CreatedBy;
             //existingUser.UpdatedBy = userDto.UpdatedBy;
-            //existingUser.Token = userDto.Token;
+            existingUser.Token = userDto.Token;
 
             _context.Users.Update(existingUser);
             await _context.SaveChangesAsync();

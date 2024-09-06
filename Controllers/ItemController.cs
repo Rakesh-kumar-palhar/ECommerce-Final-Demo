@@ -17,6 +17,15 @@ namespace ECommerce_Final_Demo.Controllers
         {
             _context = context;
         }
+        [HttpGet("allItem")]
+        // [Authorize(Roles = "SuperAdmin ")]
+        public async Task<IActionResult> GetItem()
+        {
+            var Item = await _context.Items.ToListAsync();
+            var ItemDtos = ItemDto.Mapping(Item);
+
+            return Ok(ItemDtos);
+        }
         //list of the item
         [HttpGet("listofitem")]
         [Authorize]

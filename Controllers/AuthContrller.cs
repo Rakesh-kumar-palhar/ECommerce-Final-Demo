@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace ECommerce_Final_Demo.Controllers
 {
@@ -66,12 +67,45 @@ namespace ECommerce_Final_Demo.Controllers
                 return Unauthorized(new { Message = "Invalid email or password." });
             }
 
-            var token = _jwtTokenServices.GenerateToken(user.Id, user.Role);       
+            var token = _jwtTokenServices.GenerateToken(user.Id, user.Role);
+
+            user.Token = token;
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
 
             return Ok(new { Token = token });
             
 
         }
-        
+        [HttpPost("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            // Get the user's ID from the token
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (userIdClaim == null)
+            {
+                return Unauthorized(new { Message = "User is not authenticated." });
+            }
+
+            // Parse the userId (assuming it is a Guid)
+            var userId = Guid.Parse(userIdClaim);
+
+            // Find the user by ID
+            var user = await _context.Users.FindAsync(userId);
+
+            if (user == null)
+            {
+                return NotFound(new { Message = "User not found." });
+            }
+
+            // Clear the token
+            user.Token = null;
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { Message = "User logged out successfully." });
+        }
+
     }
 }

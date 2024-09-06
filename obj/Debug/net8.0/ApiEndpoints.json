@@ -17,6 +17,16 @@
   },
   {
     "ContainingType": "ECommerce_Final_Demo.Controllers.AuthContrller",
+    "Method": "Logout",
+    "RelativePath": "api/Auth/logout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ECommerce_Final_Demo.Controllers.AuthContrller",
     "Method": "Register",
     "RelativePath": "api/Auth/register",
     "HttpMethod": "POST",
@@ -76,6 +86,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ECommerce_Final_Demo.Controllers.ItemController",
+    "Method": "GetItem",
+    "RelativePath": "api/Item/allItem",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
